@@ -1,15 +1,40 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import BaseHoc from "../hoc/BaseHoc";
 
 const FunctionalComponent = (props) => {
-
     const [count, setCount] = useState(0);
     const [changeName, setChangeName] = useState("");
+
+//    const prevRef = useRef();
+
     const substractConst = () =>{
         setCount(count-1);
     };
 
     const { name,age, company, setName} = props;
 
+    useEffect(() => {
+        console.log("Component did mount!");
+    }, []);
+
+
+    useEffect(() => {
+        console.log("Component did update");
+    });
+
+    useEffect(() => {
+        console.log("Only on changing name!");
+    }, [changeName]);
+
+    
+    useEffect(() => {
+        console.log("Only on changing name!");
+    }, [props]);
+
+  /*  useEffect(() => {
+        console.log(prevRef.current.innerHTML === count);
+    }, [count]);
+*/
     return(
 
         <div>
@@ -24,6 +49,6 @@ const FunctionalComponent = (props) => {
         </div>
 
     );
-}
+};
 
-export default FunctionalComponent;
+export default BaseHoc(FunctionalComponent);

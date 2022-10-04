@@ -1,25 +1,38 @@
 import './App.css';
-import ClassComponent from './components/ClassComponents';
-import FunctionalComponent from './components/FunctionalComponent';
+import ClassComponent from './pages/ClassComponents';
+import FunctionalComponent from './pages/FunctionalComponent';
 import { useState } from 'react';
+import {Routes, Route} from "react-router-dom";
+//HOC layout
+import BaseHoc from "./hoc/BaseHoc";
+
 
 function App() {
 
-const company = "BWS";
+const company = "Microsoft";
 const [name, setName] = useState('Komal');
 
   return (
-  <div className="App"> 
-  <h1>Class Component</h1>
-  <ClassComponent />
-  <br/>
-  <h1>Functional Component</h1>
-  <FunctionalComponent name= {name} age={18} company={company} 
-  setName={setName}
+<Routes>
+  <Route 
+  path = "/" 
+  element = {
+    <ClassComponent />
+}  
+/>
+  <Route 
+  path='/functional-component' 
+  element={
+  <FunctionalComponent
+  name = {name}
+  age = {20}
+  company = {company}
+  setName = {setName}
   />
-  
-  </div>
-  );
-}
+  }
+  />
+  </Routes>
+    );
+  }
 
 export default App;
